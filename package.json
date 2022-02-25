@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "env $(cat .env) node server.js",
+    "migration": "env $(cat .env) node migrate.js",
     "local": "env $(cat .env) nodemon server.js"
   },
   "author": "",
