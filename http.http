@@ -1,0 +1,34 @@
+@usersURL = http://localhost:3001/users
+@petsURL = http://localhost:3001/pets
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ1MzU0NzMwLCJleHAiOjE2NDc5NDY3MzB9.wM2SocaC8XipBRnVwlYjB6hK07fNMnxTXAT7m45FkiU
+
+### Register
+POST {{usersURL}}/register
+Content-Type: application/json
+
+{"firstName": "test", "lastName": "test", "email": "test@example.com", "password": "test", "phone": "+1234567s89"}
+
+### Login
+POST {{usersURL}}/login
+Content-Type: application/json
+
+{"email": "test@example.com", "password": "test"}
+
+### Get user
+GET {{usersURL}}
+Authorization: bearer {{token}}
+
+### Pet add
+POST {{petsURL}}
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+{"name": "test", "type": "Cat", "license": "1234"}
+
+### Pet list
+GET {{petsURL}}
+Authorization: bearer {{token}}
+
+### Pet get
+GET {{petsURL}}/1
+Authorization: bearer {{token}}
