@@ -1,6 +1,7 @@
 const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
+const Joi = require("joi");
 const db = require("./db");
 const { APIError } = require("./utils/errors");
 require("express-async-errors");
@@ -8,6 +9,12 @@ require("express-async-errors");
 app = express();
 app.use(cors());
 app.use(express.json());
+
+express.Router.validate = (joi) => (req, res, next) => {
+  const validation = joi.validate(req.body);
+  if (!validation.error) return next();
+  res.status(400).json({ errors: validation.error.details });
+};
 
 const controllers = fs.readdirSync("./controllers");
 
